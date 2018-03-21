@@ -11,7 +11,8 @@
 $two_stage_payment=false;
 $widget_f='charge';
 
-
+\Bitrix\Main\Loader::includeModule("sale");
+\Bitrix\Main\Loader::includeModule("catalog");
 
 if ($params['BX_PAYSYSTEM_CODE'])
 {
@@ -29,28 +30,20 @@ if ($params['BX_PAYSYSTEM_CODE'])
                   }
 }
 
-           
+$order=\Bitrix\Sale\Order::load($params['PAYMENT_ID']);
+$status_id=$order->getField("STATUS_ID");
+
+if (empty($status_id)) die(Loc::getMessage("ERROR_ORDER_ID"));
 
 if($params['CHECKONLINE']!='N')
 {
-    \Bitrix\Main\Loader::includeModule("sale");
-    \Bitrix\Main\Loader::includeModule("catalog");
-
-    $order=\Bitrix\Sale\Order::load($params['PAYMENT_ID']);
-    
-    if ($order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_AUTHORIZE']['VALUE'] and !$order->isPaid())
+    if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAMS['STATUS_AUTHORIZE']['VALUE'] and !$order->isPaid())
     {
           $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
           $basketItems = $basket->getBasketItems();
           $data=array();
           $items=array();
           foreach ($basketItems as $basketItem) {
-          
-          
-
-          
-          
-          
           
               $prD=\Bitrix\Catalog\ProductTable::getList(
                   array(
@@ -108,7 +101,9 @@ if($params['CHECKONLINE']!='N')
     }
 }
 
-if ($order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_AUTHORIZE']['VALUE'] and !$order->isPaid() and !$order->isCanceled() and $order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_CHANCEL']['VALUE'])
+
+
+if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAMS['STATUS_AUTHORIZE']['VALUE'] and !$order->isPaid() and !$order->isCanceled() and $status_id!=$CLOUD_PARAMS['STATUS_CHANCEL']['VALUE'])
 {
     if ($params['WIDGET_LANG']) $lang_widget=$params['WIDGET_LANG'];
     else $lang_widget='ru-RU';
@@ -172,7 +167,7 @@ if ($order->getField("STATUS_ID")!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $orde
     </script>
 <?
 }
-else if ($order->isCanceled() || $order->getField("STATUS_ID")==$CLOUD_PARAMS['STATUS_CHANCEL']['VALUE'])
+else if ($order->isCanceled() || $status_id==$CLOUD_PARAMS['STATUS_CHANCEL']['VALUE'])
 {
      echo GetMessage('NO_PAY_CANCEL');
 }
