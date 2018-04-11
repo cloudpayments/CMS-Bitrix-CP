@@ -132,7 +132,7 @@ if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAM
                     <?if ($params['SUCCESS_URL'])
                     {
                        ?>
-                         window.location.href="<?=$params['SUCCESS_URL']?>";
+                         window.location.href="<?=$params['SUCCESS_URL']?>?InvId=<?=htmlspecialcharsbx($params["PAYMENT_ID"]);?>";
                        <?
                     }
                     else
@@ -149,7 +149,7 @@ if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAM
                     <?if ($params['FAIL_URL'])
                     {
                        ?>
-                         window.location.href="<?=$params['FAIL_URL']?>";
+                         window.location.href="<?=$params['FAIL_URL']?>?InvId=<?=htmlspecialcharsbx($params["PAYMENT_ID"]);?>";
                        <?
                     }
                     else
