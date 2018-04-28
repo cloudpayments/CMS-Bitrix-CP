@@ -224,6 +224,19 @@ if (CModule::IncludeModule("sale") && CModule::IncludeModule("catalog"))
              $STATUS_ALL[$ar_dtype['ID']]=$ar_dtype['NAME'];
         }
         
+        
+        $data['CODES']["STATUS_PAY"]=array(
+                    "NAME" => Loc::getMessage("STATUS_PAY"),
+                    'SORT' => 300,
+                    'GROUP' => Loc::getMessage("STATUS_GROUP"),
+                    "TYPE" => "SELECT",
+                    "INPUT"=>array(
+                        'TYPE'=>'ENUM',
+                        'OPTIONS'=>$STATUS_ALL
+                    ),
+        );
+        
+        
         $data['CODES']["STATUS_CHANCEL"]=array(
                     "NAME" => Loc::getMessage("STATUS_CHANCEL"),
                     'SORT' => 301,

@@ -361,9 +361,10 @@ class CloudpaymentHandler extends PaySystem\ServiceHandler implements  PaySystem
 
         $l = $paymentCollection[0];
         $dat=new \Bitrix\Main\Type\DateTime();
-
+        $STATUS_PAY=$this->getBusinessValue($payment, 'STATUS_PAY');
+        if (empty($STATUS_PAY)) $STATUS_PAY='P';
         $l->setField('PAID','Y');
-        $order->setField('STATUS_ID',"P");   
+        $order->setField('STATUS_ID',$STATUS_PAY);   
         
         $l->setField('DATE_PAID',$dat);
         $l->setField('PAY_VOUCHER_NUM',$request->get('TransactionId'));
@@ -390,13 +391,14 @@ class CloudpaymentHandler extends PaySystem\ServiceHandler implements  PaySystem
         $TYPE_SYSTEM=$this->getBusinessValue($payment, 'TYPE_SYSTEM');    //двухстадийка - 1 одностадийка - 0
         $STATUS_AU=$this->getBusinessValue($payment, 'STATUS_AU');    //двухстадийка - 1 одностадийка - 0
 
-
+        $STATUS_PAY=$this->getBusinessValue($payment, 'STATUS_PAY');
+        if (empty($STATUS_PAY)) $STATUS_PAY='P';
         $l = $paymentCollection[0];
         $dat=new \Bitrix\Main\Type\DateTime();
         if (!$TYPE_SYSTEM)  
         {
               $l->setField('PAID','Y');
-              $order->setField('STATUS_ID',"P"); 
+              $order->setField('STATUS_ID',$STATUS_PAY); 
         }
         else $order->setField('STATUS_ID',$STATUS_AU);      //статус авторизован для двухстадийки
         

@@ -93,7 +93,6 @@ if($params['CHECKONLINE']!='N')
               
               
           }
-
           $data['cloudPayments']['customerReceipt']['Items']=$items;
           $data['cloudPayments']['customerReceipt']['taxationSystem']=$params['TYPE_NALOG'];
           $data['cloudPayments']['customerReceipt']['email']=$params['PAYMENT_BUYER_EMAIL'];
