@@ -1,7 +1,7 @@
 <?php
-$MESS["SALE_HPS_CLOUDPAYMENT_CUSTOMER_REJECTION"] = "Îòêàç êëèåíòà";
-$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_ERROR"] = "Âî âðåìÿ âûïîëíåíèÿ âîçâðàòà ïåðåâîäà âîçíèêëà îøèáêà.";
-$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_ERROR_INFO"] = "Ñòàòóñ: #STATUS#. Êîä îøèáêè: #ERROR#";
-$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_CONNECTION_ERROR"] = "Îøèáêà ïîäêëþ÷åíèÿ. URL: #URL#. HTTP êîä: #CODE#. Îøèáêà: #ERROR#";
-$MESS["SALE_HPS_CLOUDPAYMENT_TRANSACTION"] = "Òðàíçàêöèÿ";
-$MESS["SALE_HPS_CLOUDPAYMENT_DATE_PAYED"] = "Äàòà îïëàòû";
+$MESS["SALE_HPS_CLOUDPAYMENT_CUSTOMER_REJECTION"] = "ÐžÑ‚ÐºÐ°Ð· ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°";
+$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_ERROR"] = "Ð’Ð¾ Ð²Ñ€ÐµÐ¼Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‚Ð° Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´Ð° Ð²Ð¾Ð·Ð½Ð¸ÐºÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ°.";
+$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_ERROR_INFO"] = "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ: #STATUS#. ÐšÐ¾Ð´ Ð¾ÑˆÐ¸Ð±ÐºÐ¸: #ERROR#";
+$MESS["SALE_HPS_CLOUDPAYMENT_REFUND_CONNECTION_ERROR"] = "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ. URL: #URL#. HTTP ÐºÐ¾Ð´: #CODE#. ÐžÑˆÐ¸Ð±ÐºÐ°: #ERROR#";
+$MESS["SALE_HPS_CLOUDPAYMENT_TRANSACTION"] = "Ð¢Ñ€Ð°Ð½Ð·Ð°ÐºÑ†Ð¸Ñ";
+$MESS["SALE_HPS_CLOUDPAYMENT_DATE_PAYED"] = "Ð”Ð°Ñ‚Ð° Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹";

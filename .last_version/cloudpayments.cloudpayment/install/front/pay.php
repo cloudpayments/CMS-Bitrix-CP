@@ -2,7 +2,7 @@
 use \Bitrix\Main\Localization\Loc;
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");   
-$APPLICATION->SetTitle("Страница оплаты заказа");
+$APPLICATION->SetTitle("РЎС‚СЂР°РЅРёС†Р° РѕРїР»Р°С‚С‹ Р·Р°РєР°Р·Р°");
 ?>
 
 <?
@@ -61,6 +61,42 @@ if ($_GET['ORDER_ID'] and $_GET['hash'])
                $CLOUD_PARAMS=unserialize($ptype['PARAMS']);
         }  */
             
+            
+            
+        $sum=0;    
+        $PAID_IDS='';
+        $DATE_PAID='';
+        $paymentCollection = $order->getPaymentCollection();
+        foreach ($paymentCollection as $payment):
+            if ($payment->isPaid()):
+                $PAID_IDS[]=$payment->getField("ID");
+            else:
+                $sum=$payment->getSum();    
+            endif;
+        endforeach;      
+ 
+        if ($sum<1): 
+                echo Loc::getMessage("WRONG_ORDER_PAY");
+                die();
+        endif;
+            
+        if ($PAID_IDS[0]):
+              global $DB;
+              $results_sql = $DB->Query("SELECT `ID`,`DATE_PAID` FROM `b_sale_order_payment` WHERE `ID`=".implode(" or `ID`=",$PAID_IDS)." and `PAID`='Y' ORDER BY `ID` desc");
+        
+              if ($row_sql = $results_sql->Fetch()):
+                     if (!empty($DATE_PAID)):
+                           if (strtotime($row_sql['DATE_PAID'])>strtotime($DATE_PAID)):
+                                $DATE_PAID=$row_sql['DATE_PAID'];
+                           endif;
+                     else:
+                          $DATE_PAID=$row_sql['DATE_PAID'];      
+                     endif;
+              endif;
+        endif;
+            
+            
+            
         $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
         $basketItems = $basket->getBasketItems();
         $data=array();
@@ -69,7 +105,7 @@ if ($_GET['ORDER_ID'] and $_GET['hash'])
             $prD=\Bitrix\Catalog\ProductTable::getList(
                 array(
                     'filter'=>array('ID'=>$basketItem->getField('PRODUCT_ID')),
-                    'select'=>array('VAT_ID'),
+                   // 'select'=>array('VAT_ID'),
                 )
             )->fetch();
             if($prD){
@@ -83,33 +119,46 @@ if ($_GET['ORDER_ID'] and $_GET['hash'])
                 $nds=null;
             }
     
-            $items[]=array(
-                    'label'=>$basketItem->getField('NAME'),
-                    'price'=>number_format($basketItem->getField('PRICE'),2,".",''),
-                    'quantity'=>$basketItem->getQuantity(),
-                    'amount'=>number_format(floatval($basketItem->getField('PRICE')*$basketItem->getQuantity()),2,".",''),
-                    'vat'=>$nds,
-                    'ean13'=>null
-            );
+           $ORDER_PRICE0=$order->getPrice();
+           $basketQuantity=$basketItem->getQuantity();
+           $PRODUCT_PRICE=$basketItem->getField('PRICE'); 
+    
+              $items[]=array(
+                      'label'=>$basketItem->getField('NAME'),
+                      'price'=>number_format($PRODUCT_PRICE,2,".",''),
+                      'quantity'=>$basketQuantity,
+                      'amount'=>number_format(floatval($PRODUCT_PRICE*$basketQuantity),2,".",''),
+                      'vat'=>$nds,
+                      'ean13'=>null
+              );
         }
         
-        //Добавляем доставку
-        if ($order->getDeliveryPrice() > 0) 
-        {
-            $items[] = array(
-                'label' => 'Доставка',
-                'price' => number_format($order->getDeliveryPrice(), 2, ".", ''),
-                'quantity' => 1,
-                'amount' => number_format($order->getDeliveryPrice(), 2, ".", ''),
-                'vat' => null,
-                'ean13' => null
-            );
-        }
+        //Р”РѕР±Р°РІР»СЏРµРј РґРѕСЃС‚Р°РІРєСѓ
+          if ($order->getDeliveryPrice() > 0 && $order->getField("DELIVERY_ID")) 
+          {
+              if ($params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")]) $Delivery_vat=$params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")];
+              else $Delivery_vat=null;
+              
+
+              $PRODUCT_PRICE_DELIVERY=$order->getDeliveryPrice(); 
+              
+              $items[] = array(
+                  'label' => GetMessage('DELIVERY_TXT'),
+                  'price' => number_format($order->getDeliveryPrice(), 2, ".", ''),
+                  'quantity' => 1,
+                  'amount' => number_format($PRODUCT_PRICE_DELIVERY, 2, ".", ''),
+                  'vat' => $Delivery_vat,  
+                  'ean13' => null
+              );
+              unset($PRODUCT_PRICE_DELIVERY);
+              unset($PRODUCT_PRICE);
+          }
     
-        $data['cloudPayments']['customerReceipt']['Items']=$items;
-        $data['cloudPayments']['customerReceipt']['taxationSystem']='';
-        $data['cloudPayments']['customerReceipt']['email']=$email;
-        $data['cloudPayments']['customerReceipt']['phone']=$phone;
+          //$data['PAY_SYSTEM_ID']=$params['PAY_ID'];
+          $data['cloudPayments']['customerReceipt']['Items']=$items;
+          $data['cloudPayments']['customerReceipt']['taxationSystem']=$params['TYPE_NALOG'];
+          $data['cloudPayments']['customerReceipt']['email']=$params['PAYMENT_BUYER_EMAIL'];
+          $data['cloudPayments']['customerReceipt']['phone']=$params['PAYMENT_BUYER_PHONE'];
 }
 else 
 {
@@ -129,13 +178,13 @@ else $lang_widget='ru-RU';
 <script type="text/javascript" src="/bitrix/js/main/jquery/jquery-1.8.3.min.js?151126639193636"></script>
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <div>
-				Ваш заказ <b>№<?=$order->getId()?></b> от <?=$order->getDateInsert()?> успешно создан.
-        Номер вашей оплаты: <b>№<?=$order->getId()?></b><br><br>
-				Вы можете следить за выполнением своего заказа в <a href="/personal/order/">Персональном разделе сайта</a>. 
-        Обратите внимание, что для входа в этот раздел вам необходимо будет ввести логин и пароль пользователя сайта.			
+				Р’Р°С€ Р·Р°РєР°Р· <b>в„–<?=$order->getId()?></b> РѕС‚ <?=$order->getDateInsert()?> СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ.
+        РќРѕРјРµСЂ РІР°С€РµР№ РѕРїР»Р°С‚С‹: <b>в„–<?=$order->getId()?></b><br><br>
+				Р’С‹ РјРѕР¶РµС‚Рµ СЃР»РµРґРёС‚СЊ Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµРј СЃРІРѕРµРіРѕ Р·Р°РєР°Р·Р° РІ <a href="/personal/order/">РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРј СЂР°Р·РґРµР»Рµ СЃР°Р№С‚Р°</a>. 
+        РћР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ, С‡С‚Рѕ РґР»СЏ РІС…РѕРґР° РІ СЌС‚РѕС‚ СЂР°Р·РґРµР» РІР°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р±СѓРґРµС‚ РІРІРµСЃС‚Рё Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃР°Р№С‚Р°.			
 </div>
 <br><br>
-<button class="cloudpay_button" id="payButton">Оплатить</button>
+<button class="cloudpay_button" id="payButton">РћРїР»Р°С‚РёС‚СЊ</button>
 <div id="result" style="display:none"></div>
 
 <script type="text/javascript">
@@ -143,8 +192,8 @@ else $lang_widget='ru-RU';
         var widget = new cp.CloudPayments({language:'<?=$lang_widget?>'});
         widget.<?=$widget_f?>({ // options
                 publicId: '<?=$CLOUD_PARAMS['APIPASS']['VALUE']?>',
-                description: 'заказ № <?=$order->getId()?> на "<?=$_SERVER['HTTP_HOST']?>" от <?=$order->getDateInsert()?>', 
-                amount: <?=number_format($order->getField('PRICE'), 2, '.', '')?>,
+                description: 'Р·Р°РєР°Р· в„– <?=$order->getId()?> РЅР° "<?=$_SERVER['HTTP_HOST']?>" РѕС‚ <?=$order->getDateInsert()?>', 
+                amount: <?=number_format($sum, 2, '.', '')?>,
                 currency: '<?=$order->getCurrency()?>',
                 email: '<?=$email?>',
                 invoiceId: '<?=$order->getId()?>',
@@ -161,7 +210,7 @@ else $lang_widget='ru-RU';
                     else
                     {
                     ?>
-                        BX("result").innerHTML="Заказ оплачен";
+                        BX("result").innerHTML="Р—Р°РєР°Р· РѕРїР»Р°С‡РµРЅ";
                         BX.style(BX("result"),"color","green");
                         BX.style(BX("result"),"display","block");
                     <?
@@ -186,7 +235,7 @@ else $lang_widget='ru-RU';
                     ?>
                 });
     };        
-    $("#payButton").on("click", payHandler); //кнопка "Оплатить"
+    $("#payButton").on("click", payHandler); //РєРЅРѕРїРєР° "РћРїР»Р°С‚РёС‚СЊ"
 </script>
 
 

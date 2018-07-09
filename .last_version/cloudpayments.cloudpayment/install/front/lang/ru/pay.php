@@ -1,6 +1,7 @@
 <?
-$MESS['WRONG_HASH']="Íå âåðíûé hash çàêàçà";
-$MESS['ORDER_NOT_FOUND']="Çàêàç íå íàéäåí";
-$MESS['WRONG_AU_STATUS']="Îïëàòà ïî çàêàçó óæå àâòîðèçîâàíà";
-$MESS ['WRONG_ORDER_PAY']="Çàêàç óæå îïëà÷åí";
+$MESS['WRONG_HASH']="ÐÐµ Ð²ÐµÑ€Ð½Ñ‹Ð¹ hash Ð·Ð°ÐºÐ°Ð·Ð°";
+$MESS['ORDER_NOT_FOUND']="Ð—Ð°ÐºÐ°Ð· Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½";
+$MESS['WRONG_AU_STATUS']="ÐžÐ¿Ð»Ð°Ñ‚Ð° Ð¿Ð¾ Ð·Ð°ÐºÐ°Ð·Ñƒ ÑƒÐ¶Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð°";
+$MESS ['WRONG_ORDER_PAY']="Ð—Ð°ÐºÐ°Ð· ÑƒÐ¶Ðµ Ð¾Ð¿Ð»Ð°Ñ‡ÐµÐ½";
+$MESS ['DELIVERY_TXT']='Ð”Ð¾ÑÑ‚Ð°Ð²ÐºÐ°';
 ?>

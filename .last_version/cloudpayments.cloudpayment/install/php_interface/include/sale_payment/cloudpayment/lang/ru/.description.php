@@ -1,78 +1,79 @@
 <?php
 $MESS['SALE_HPS_CLOUDPAYMENT'] = 'CloudPayments';
 $MESS["SALE_HPS_CLOUDPAYMENT_SHOP_ID"] = "Public ID";
-$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_ID_DESC"] = "Ключ доступа (из личного кабинета CloudPayments)";
-$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_ID"] = "Код заказа (ID)";
-$MESS["CONNECT_SETTINGS_CLOUDPAYMENT"]='Настройки платежной системы';
-$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_KEY"] = "Пароль для API";
-$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_KEY_DESC"] = "Пароль доступа (из личного кабинета CloudPayments)";
-$MESS["SALE_HPS_CLOUDPAYMENT_CHECKONLINE"]="Использовать функционал онлайн касс";
-$MESS["SALE_HPS_CLOUDPAYMENT_CHECKONLINE_DESC"]="Данный функционал должен быть включен на стороне CloudPayments";
-$MESS["SALE_HPS_CLOUDPAYMENT_SHOULD_PAY"] = "Сумма к оплате";
-$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_DATE"] = "Дата создания заказа";
-$MESS["SALE_HPS_CLOUDPAYMENT_IS_TEST"] = "Тестовый режим";
-$MESS["SALE_HPS_CLOUDPAYMENT_CHANGE_STATUS_PAY"] = "Автоматически оплачивать заказ при получении успешного статуса оплаты";
-$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_TYPE"] = "Тип платёжной системы";
-$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_ID"] = "Код покупателя";
-$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_EMAIL"] = "Email покупателя";
-$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_PHONE"] = "Телефон покупателя";
-$MESS["SALE_HPS_CLOUDPAYMENT_CURRENCY"]="Валюта заказа";
-$MESS["SALE_HPS_CLOUDPAYMENT_RETURN"] = "Возвраты платежей не поддерживаются";
-$MESS["SALE_HPS_CLOUDPAYMENT_RESTRICTION"] = "Ограничение по сумме платежей зависит от способа оплаты, который выберет покупатель";
-$MESS["SALE_HPS_CLOUDPAYMENT_COMMISSION"] = "Без комисси для покупателя";
-$MESS["SALE_HPS_CLOUDPAYMENT_INN"]="ИНН организации";
-$MESS["SALE_HPS_CLOUDPAYMENT_INN_DESC"]="ИНН вашей организации или ИП, на который зарегистрирована касса";
-$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_NALOG"]='Тип системы налогообложения';
-$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_NALOG_DESC"]='Указанная система налогообложения должна совпадать с одним из вариантов, зарегистрированных в ККТ.';
-$MESS["SALE_HPS_NALOG_TYPE_0"]="Общая система налогообложения";
-$MESS["SALE_HPS_NALOG_TYPE_1"]="Упрощенная система налогообложения (Доход)";
-$MESS["SALE_HPS_NALOG_TYPE_2"]="Упрощенная система налогообложения (Доход минус Расход)";
-$MESS["SALE_HPS_NALOG_TYPE_3"]="Единый налог на вмененный доход";
-$MESS["SALE_HPS_NALOG_TYPE_4"]="Единый сельскохозяйственный налог";                
-$MESS["SALE_HPS_NALOG_TYPE_5"]="Патентная система налогообложения";
-$MESS["VBCH_CLPAY_SPCP_DDESCR"] = "<a href=\"http://www.http://cloudpayments.ru/\">CloudPayments</a>.<br>Приём платежей онлайн с помощью банковской карты через систему CloudPayments <Br/>
-Зайти в личный кабинет CloudPayments и исправить пути: <br/>
-&nbsp;&nbsp;	Настройки Сheck уведомлений: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=check<br/>
-&nbsp;&nbsp;	Настройки Pay уведомлений: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=pay<br/>
-&nbsp;&nbsp;	Настройки Fail уведомлений: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=fail<br/>";
-$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_SYSTEM"] = "Тип схемы проведения платежей";
-$MESS["SALE_HPS_TYPE_SCHEME_0"]="Одностадийная оплата";
-$MESS["SALE_HPS_TYPE_SCHEME_1"]="Двухстадийная оплата";
+$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_ID_DESC"] = "РљР»СЋС‡ РґРѕСЃС‚СѓРїР° (РёР· Р»РёС‡РЅРѕРіРѕ РєР°Р±РёРЅРµС‚Р° CloudPayments)";
+$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_ID"] = "РљРѕРґ Р·Р°РєР°Р·Р° (ID)";
+$MESS["SALE_HPS_CLOUDPAYMENT_PAY_ID"] = "РљРѕРґ РїР»Р°С‚РµР¶Р° (ID)";
+$MESS["CONNECT_SETTINGS_CLOUDPAYMENT"]='РќР°СЃС‚СЂРѕР№РєРё РїР»Р°С‚РµР¶РЅРѕР№ СЃРёСЃС‚РµРјС‹';
+$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_KEY"] = "РџР°СЂРѕР»СЊ РґР»СЏ API";
+$MESS["SALE_HPS_CLOUDPAYMENT_SHOP_KEY_DESC"] = "РџР°СЂРѕР»СЊ РґРѕСЃС‚СѓРїР° (РёР· Р»РёС‡РЅРѕРіРѕ РєР°Р±РёРЅРµС‚Р° CloudPayments)";
+$MESS["SALE_HPS_CLOUDPAYMENT_CHECKONLINE"]="РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёРѕРЅР°Р» РѕРЅР»Р°Р№РЅ РєР°СЃСЃ";
+$MESS["SALE_HPS_CLOUDPAYMENT_CHECKONLINE_DESC"]="Р”Р°РЅРЅС‹Р№ С„СѓРЅРєС†РёРѕРЅР°Р» РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІРєР»СЋС‡РµРЅ РЅР° СЃС‚РѕСЂРѕРЅРµ CloudPayments";
+$MESS["SALE_HPS_CLOUDPAYMENT_SHOULD_PAY"] = "РЎСѓРјРјР° Рє РѕРїР»Р°С‚Рµ";
+$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_DATE"] = "Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ Р·Р°РєР°Р·Р°";
+$MESS["SALE_HPS_CLOUDPAYMENT_IS_TEST"] = "РўРµСЃС‚РѕРІС‹Р№ СЂРµР¶РёРј";
+$MESS["SALE_HPS_CLOUDPAYMENT_CHANGE_STATUS_PAY"] = "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РѕРїР»Р°С‡РёРІР°С‚СЊ Р·Р°РєР°Р· РїСЂРё РїРѕР»СѓС‡РµРЅРёРё СѓСЃРїРµС€РЅРѕРіРѕ СЃС‚Р°С‚СѓСЃР° РѕРїР»Р°С‚С‹";
+$MESS["SALE_HPS_CLOUDPAYMENT_PAYMENT_TYPE"] = "РўРёРї РїР»Р°С‚С‘Р¶РЅРѕР№ СЃРёСЃС‚РµРјС‹";
+$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_ID"] = "РљРѕРґ РїРѕРєСѓРїР°С‚РµР»СЏ";
+$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_EMAIL"] = "Email РїРѕРєСѓРїР°С‚РµР»СЏ";
+$MESS["SALE_HPS_CLOUDPAYMENT_BUYER_PHONE"] = "РўРµР»РµС„РѕРЅ РїРѕРєСѓРїР°С‚РµР»СЏ";
+$MESS["SALE_HPS_CLOUDPAYMENT_CURRENCY"]="Р’Р°Р»СЋС‚Р° Р·Р°РєР°Р·Р°";
+$MESS["SALE_HPS_CLOUDPAYMENT_RETURN"] = "Р’РѕР·РІСЂР°С‚С‹ РїР»Р°С‚РµР¶РµР№ РЅРµ РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ";
+$MESS["SALE_HPS_CLOUDPAYMENT_RESTRICTION"] = "РћРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ СЃСѓРјРјРµ РїР»Р°С‚РµР¶РµР№ Р·Р°РІРёСЃРёС‚ РѕС‚ СЃРїРѕСЃРѕР±Р° РѕРїР»Р°С‚С‹, РєРѕС‚РѕСЂС‹Р№ РІС‹Р±РµСЂРµС‚ РїРѕРєСѓРїР°С‚РµР»СЊ";
+$MESS["SALE_HPS_CLOUDPAYMENT_COMMISSION"] = "Р‘РµР· РєРѕРјРёСЃСЃРё РґР»СЏ РїРѕРєСѓРїР°С‚РµР»СЏ";
+$MESS["SALE_HPS_CLOUDPAYMENT_INN"]="РРќРќ РѕСЂРіР°РЅРёР·Р°С†РёРё";
+$MESS["SALE_HPS_CLOUDPAYMENT_INN_DESC"]="РРќРќ РІР°С€РµР№ РѕСЂРіР°РЅРёР·Р°С†РёРё РёР»Рё РРџ, РЅР° РєРѕС‚РѕСЂС‹Р№ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅР° РєР°СЃСЃР°";
+$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_NALOG"]='РўРёРї СЃРёСЃС‚РµРјС‹ РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ';
+$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_NALOG_DESC"]='РЈРєР°Р·Р°РЅРЅР°СЏ СЃРёСЃС‚РµРјР° РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ РґРѕР»Р¶РЅР° СЃРѕРІРїР°РґР°С‚СЊ СЃ РѕРґРЅРёРј РёР· РІР°СЂРёР°РЅС‚РѕРІ, Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С… РІ РљРљРў.';
+$MESS["SALE_HPS_NALOG_TYPE_0"]="РћР±С‰Р°СЏ СЃРёСЃС‚РµРјР° РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ";
+$MESS["SALE_HPS_NALOG_TYPE_1"]="РЈРїСЂРѕС‰РµРЅРЅР°СЏ СЃРёСЃС‚РµРјР° РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ (Р”РѕС…РѕРґ)";
+$MESS["SALE_HPS_NALOG_TYPE_2"]="РЈРїСЂРѕС‰РµРЅРЅР°СЏ СЃРёСЃС‚РµРјР° РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ (Р”РѕС…РѕРґ РјРёРЅСѓСЃ Р Р°СЃС…РѕРґ)";
+$MESS["SALE_HPS_NALOG_TYPE_3"]="Р•РґРёРЅС‹Р№ РЅР°Р»РѕРі РЅР° РІРјРµРЅРµРЅРЅС‹Р№ РґРѕС…РѕРґ";
+$MESS["SALE_HPS_NALOG_TYPE_4"]="Р•РґРёРЅС‹Р№ СЃРµР»СЊСЃРєРѕС…РѕР·СЏР№СЃС‚РІРµРЅРЅС‹Р№ РЅР°Р»РѕРі";                
+$MESS["SALE_HPS_NALOG_TYPE_5"]="РџР°С‚РµРЅС‚РЅР°СЏ СЃРёСЃС‚РµРјР° РЅР°Р»РѕРіРѕРѕР±Р»РѕР¶РµРЅРёСЏ";
+$MESS["VBCH_CLPAY_SPCP_DDESCR"] = "<a href=\"http://www.http://cloudpayments.ru/\">CloudPayments</a>.<br>РџСЂРёС‘Рј РїР»Р°С‚РµР¶РµР№ РѕРЅР»Р°Р№РЅ СЃ РїРѕРјРѕС‰СЊСЋ Р±Р°РЅРєРѕРІСЃРєРѕР№ РєР°СЂС‚С‹ С‡РµСЂРµР· СЃРёСЃС‚РµРјСѓ CloudPayments <Br/>
+Р—Р°Р№С‚Рё РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚ CloudPayments Рё РёСЃРїСЂР°РІРёС‚СЊ РїСѓС‚Рё: <br/>
+&nbsp;&nbsp;	РќР°СЃС‚СЂРѕР№РєРё РЎheck СѓРІРµРґРѕРјР»РµРЅРёР№: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=check<br/>
+&nbsp;&nbsp;	РќР°СЃС‚СЂРѕР№РєРё Pay СѓРІРµРґРѕРјР»РµРЅРёР№: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=pay<br/>
+&nbsp;&nbsp;	РќР°СЃС‚СЂРѕР№РєРё Fail СѓРІРµРґРѕРјР»РµРЅРёР№: http://".$_SERVER['HTTP_HOST']."/bitrix/tools/sale_ps_result.php?action=fail<br/>";
+$MESS["SALE_HPS_CLOUDPAYMENT_TYPE_SYSTEM"] = "РўРёРї СЃС…РµРјС‹ РїСЂРѕРІРµРґРµРЅРёСЏ РїР»Р°С‚РµР¶РµР№";
+$MESS["SALE_HPS_TYPE_SCHEME_0"]="РћРґРЅРѕСЃС‚Р°РґРёР№РЅР°СЏ РѕРїР»Р°С‚Р°";
+$MESS["SALE_HPS_TYPE_SCHEME_1"]="Р”РІСѓС…СЃС‚Р°РґРёР№РЅР°СЏ РѕРїР»Р°С‚Р°";
 
 $MESS["SALE_HPS_CLOUDPAYMENT_SUCCESS_URL"]="Success URL";
 $MESS["SALE_HPS_CLOUDPAYMENT_SUCCESS_URL_DESC"]="";
 $MESS["SALE_HPS_CLOUDPAYMENT_FAIL_URL"]="Fail URL";
 $MESS["SALE_HPS_CLOUDPAYMENT_FAIL_URL_DESC"]="";
-$MESS["SALE_HPS_CLOUDPAYMENT_WIDGET_LANG"]="Язык виджета";
+$MESS["SALE_HPS_CLOUDPAYMENT_WIDGET_LANG"]="РЇР·С‹Рє РІРёРґР¶РµС‚Р°";
 $MESS["SALE_HPS_CLOUDPAYMENT_WIDGET_LANG_DESC"]="";
 
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_0"]="Русский MSK";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_1"]="Английский CET";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_2"]="Латышский CET";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_3"]="Азербайджанский AZT";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_4"]="Русский ALMT";
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_5"]="Казахский ALMT";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_6"]="Украинский EET";
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_7"]="Польский CET";	
-$MESS["SALE_HPS_WIDGET_LANG_TYPE_8"]="Португальский CET";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_0"]="Р СѓСЃСЃРєРёР№ MSK";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_1"]="РђРЅРіР»РёР№СЃРєРёР№ CET";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_2"]="Р›Р°С‚С‹С€СЃРєРёР№ CET";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_3"]="РђР·РµСЂР±Р°Р№РґР¶Р°РЅСЃРєРёР№ AZT";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_4"]="Р СѓСЃСЃРєРёР№ ALMT";
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_5"]="РљР°Р·Р°С…СЃРєРёР№ ALMT";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_6"]="РЈРєСЂР°РёРЅСЃРєРёР№ EET";
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_7"]="РџРѕР»СЊСЃРєРёР№ CET";	
+$MESS["SALE_HPS_WIDGET_LANG_TYPE_8"]="РџРѕСЂС‚СѓРіР°Р»СЊСЃРєРёР№ CET";	
 
-$MESS["SALE_HPS_CLOUDPAYMENT_VAT_DELIVERY"]="Выберите НДС на доставку, если необходимо";
+$MESS["SALE_HPS_CLOUDPAYMENT_VAT_DELIVERY"]="Р’С‹Р±РµСЂРёС‚Рµ РќР”РЎ РЅР° РґРѕСЃС‚Р°РІРєСѓ, РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ";
 $MESS["SALE_HPS_CLOUDPAYMENT_VAT_DELIVERY_DESC"]="";
 
-$MESS["VAT"]="Выберите НДС на доставку, если необходимо";
-$MESS["NOT_VAT"]="Без НДС";
+$MESS["VAT"]="Р’С‹Р±РµСЂРёС‚Рµ РќР”РЎ РЅР° РґРѕСЃС‚Р°РІРєСѓ, РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ";
+$MESS["NOT_VAT"]="Р‘РµР· РќР”РЎ";
 
-$MESS["DELIVERY_VAT1"]="НДС 18%";
-$MESS["DELIVERY_VAT2"]="НДС 10%";
-$MESS["DELIVERY_VAT3"]="НДС 0%";
-$MESS["DELIVERY_VAT4"]="расчетный НДС 10/110";
-$MESS["DELIVERY_VAT5"]="расчетный НДС 18/118";
+$MESS["DELIVERY_VAT1"]="РќР”РЎ 18%";
+$MESS["DELIVERY_VAT2"]="РќР”РЎ 10%";
+$MESS["DELIVERY_VAT3"]="РќР”РЎ 0%";
+$MESS["DELIVERY_VAT4"]="СЂР°СЃС‡РµС‚РЅС‹Р№ РќР”РЎ 10/110";
+$MESS["DELIVERY_VAT5"]="СЂР°СЃС‡РµС‚РЅС‹Р№ РќР”РЎ 18/118";
 
 
-$MESS["STATUS_GROUP"]="Статусы";
-$MESS["STATUS_PAY"]="Статус оплачен";
-$MESS["STATUS_CHANCEL"]="Статус возврата платежа";
-$MESS["STATUS_AUTHORIZE"]="Статус подтверждения авторизации платежа (двухстадийные платежи)";
-$MESS["STATUS_AU"]="Статус авторизованного платежа (двухстадийные платежи)";
-
-$MESS["STATUS_VOID"]="Статус отмена авторизованного платежа (двухстадийные платежи)";
+$MESS["STATUS_GROUP"]="РЎС‚Р°С‚СѓСЃС‹";
+$MESS["STATUS_PAY"]="РЎС‚Р°С‚СѓСЃ РѕРїР»Р°С‡РµРЅ";
+$MESS["STATUS_CHANCEL"]="РЎС‚Р°С‚СѓСЃ РІРѕР·РІСЂР°С‚Р° РїР»Р°С‚РµР¶Р°";
+$MESS["STATUS_AUTHORIZE"]="РЎС‚Р°С‚СѓСЃ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Р°РІС‚РѕСЂРёР·Р°С†РёРё РїР»Р°С‚РµР¶Р° (РґРІСѓС…СЃС‚Р°РґРёР№РЅС‹Рµ РїР»Р°С‚РµР¶Рё)";
+$MESS["STATUS_AU"]="РЎС‚Р°С‚СѓСЃ Р°РІС‚РѕСЂРёР·РѕРІР°РЅРЅРѕРіРѕ РїР»Р°С‚РµР¶Р° (РґРІСѓС…СЃС‚Р°РґРёР№РЅС‹Рµ РїР»Р°С‚РµР¶Рё)";
+$MESS["STATUS_VOID"]="РЎС‚Р°С‚СѓСЃ РѕС‚РјРµРЅР° Р°РІС‚РѕСЂРёР·РѕРІР°РЅРЅРѕРіРѕ РїР»Р°С‚РµР¶Р° (РґРІСѓС…СЃС‚Р°РґРёР№РЅС‹Рµ РїР»Р°С‚РµР¶Рё)";
+$MESS["STATUS_PARTIAL_PAY"]="РЎС‚Р°С‚СѓСЃ С‡Р°СЃС‚РёС‡РЅРѕР№ РѕРїР»Р°С‚С‹";

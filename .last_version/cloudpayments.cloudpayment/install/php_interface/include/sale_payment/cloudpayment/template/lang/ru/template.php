@@ -1,9 +1,9 @@
 <?php
-$MESS["SALE_HANDLERS_PAY_SYSTEM_CLOUDPAYMENTS_BUTTON_PAID"] = "Îïëàòèòü";
-$MESS["SALE_HANDLERS_PAY_SYSTEM_CLOUDPAYMENTS_REDIRECT_MESS"] = "Âû áóäåòå ïåðåíàïðàâëåííû íà ñòðàíèöó îïëàòû";
-$MESS["VBCH_CLPAY_MM_DESC"]='çàêàç ¹ #ORDER_ID# íà "#SITE_NAME#" îò #DATE#';
-$MESS["DELIVERY_TXT"]='Äîñòàâêà';
+$MESS["SALE_HANDLERS_PAY_SYSTEM_CLOUDPAYMENTS_BUTTON_PAID"] = "ÐžÐ¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ";
+$MESS["SALE_HANDLERS_PAY_SYSTEM_CLOUDPAYMENTS_REDIRECT_MESS"] = "Ð’Ñ‹ Ð±ÑƒÐ´ÐµÑ‚Ðµ Ð¿ÐµÑ€ÐµÐ½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð½Ñ‹ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹";
+$MESS["VBCH_CLPAY_MM_DESC"]='Ð·Ð°ÐºÐ°Ð· â„– #ORDER_ID# Ð½Ð° "#SITE_NAME#" Ð¾Ñ‚ #DATE#';
+$MESS["DELIVERY_TXT"]='Ð”Ð¾ÑÑ‚Ð°Ð²ÐºÐ°';
 
-$MESS["NO_PAY"]="ñóììà ïëàòåæà çàáëîêèðîâàíà íà ñ÷åòó äåðæàòåëÿ, è áóäåò ñïèñàíà ìàãàçèíîì â áëèæàéøåå âðåìÿ";
-$MESS["NO_PAY_CANCEL"]="äåíüãè âîçâðàùåíû íà ñ÷¸ò ïîêóïàòåëÿ";
-$MESS["ERROR_ORDER_ID"]="Íå íàéäåí ID çàêàçà - îáðàòèòåñü ê àäìèíèñòðàòîðó";
+$MESS["NO_PAY"]="ÑÑƒÐ¼Ð¼Ð° Ð¿Ð»Ð°Ñ‚ÐµÐ¶Ð° Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð° Ð½Ð° ÑÑ‡ÐµÑ‚Ñƒ Ð´ÐµÑ€Ð¶Ð°Ñ‚ÐµÐ»Ñ, Ð¸ Ð±ÑƒÐ´ÐµÑ‚ ÑÐ¿Ð¸ÑÐ°Ð½Ð° Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð¾Ð¼ Ð² Ð±Ð»Ð¸Ð¶Ð°Ð¹ÑˆÐµÐµ Ð²Ñ€ÐµÐ¼Ñ";
+$MESS["NO_PAY_CANCEL"]="Ð´ÐµÐ½ÑŒÐ³Ð¸ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÐµÐ½Ñ‹ Ð½Ð° ÑÑ‡Ñ‘Ñ‚ Ð¿Ð¾ÐºÑƒÐ¿Ð°Ñ‚ÐµÐ»Ñ";
+$MESS["ERROR_ORDER_ID"]="ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½ ID Ð·Ð°ÐºÐ°Ð·Ð° - Ð¾Ð±Ñ€Ð°Ñ‚Ð¸Ñ‚ÐµÑÑŒ Ðº Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñƒ";

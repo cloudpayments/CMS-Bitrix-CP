@@ -117,6 +117,15 @@ $data = array(
 				'PROVIDER_VALUE' => 'ID'
 			)
 		),
+		"PAY_ID" => array(
+			"NAME" => Loc::getMessage("SALE_HPS_CLOUDPAYMENT_PAY_ID"),
+			'SORT' => 400,
+			'GROUP' => 'PAYMENT',
+			'DEFAULT' => array(
+				'PROVIDER_KEY' => 'PAYMENT',
+				'PROVIDER_VALUE' => 'ID'
+			)
+		),
 		"PAYMENT_DATE_INSERT" => array(
 			"NAME" => Loc::getMessage("SALE_HPS_CLOUDPAYMENT_PAYMENT_DATE"),
 			'SORT' => 500,
@@ -279,6 +288,20 @@ if (CModule::IncludeModule("sale") && CModule::IncludeModule("catalog"))
         $data['CODES']["STATUS_VOID"]=array(
                     "NAME" => Loc::getMessage("STATUS_VOID"),
                     'SORT' => 304,
+                    'GROUP' => Loc::getMessage("STATUS_GROUP"),
+                    "TYPE" => "SELECT",
+                    "INPUT"=>array(
+                        'TYPE'=>'ENUM',
+                        'OPTIONS'=>$STATUS_ALL,
+                        "DEFAULT"=>"N"
+                    ),
+                        "DEFAULT"=>"N"
+        );
+        
+        
+        $data['CODES']["STATUS_PARTIAL_PAY"]=array(
+                    "NAME" => Loc::getMessage("STATUS_PARTIAL_PAY"),
+                    'SORT' => 305,
                     'GROUP' => Loc::getMessage("STATUS_GROUP"),
                     "TYPE" => "SELECT",
                     "INPUT"=>array(
