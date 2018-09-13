@@ -90,6 +90,9 @@ class cloudpayments_cloudpayment extends CModule
         unset($new_status);
         unset($lang);
         
+        
+        
+        
         $lang[]=array("LID"=>'ru',"NAME"=>GetMessage("cloudpayments_STATUS3"));
         $lang[]=array("LID"=>'en',"NAME"=>"Cloudpayments: Confirm");
         

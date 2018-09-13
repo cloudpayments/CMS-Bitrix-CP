@@ -2,7 +2,7 @@
 use \Bitrix\Main\Localization\Loc;
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");   
-$APPLICATION->SetTitle("РЎС‚СЂР°РЅРёС†Р° РѕРїР»Р°С‚С‹ Р·Р°РєР°Р·Р°");
+$APPLICATION->SetTitle("Страница оплаты заказа");
 ?>
 
 <?
@@ -133,7 +133,7 @@ if ($_GET['ORDER_ID'] and $_GET['hash'])
               );
         }
         
-        //Р”РѕР±Р°РІР»СЏРµРј РґРѕСЃС‚Р°РІРєСѓ
+        //Добавляем доставку
           if ($order->getDeliveryPrice() > 0 && $order->getField("DELIVERY_ID")) 
           {
               if ($params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")]) $Delivery_vat=$params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")];
@@ -178,13 +178,13 @@ else $lang_widget='ru-RU';
 <script type="text/javascript" src="/bitrix/js/main/jquery/jquery-1.8.3.min.js?151126639193636"></script>
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <div>
-				Р’Р°С€ Р·Р°РєР°Р· <b>в„–<?=$order->getId()?></b> РѕС‚ <?=$order->getDateInsert()?> СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ.
-        РќРѕРјРµСЂ РІР°С€РµР№ РѕРїР»Р°С‚С‹: <b>в„–<?=$order->getId()?></b><br><br>
-				Р’С‹ РјРѕР¶РµС‚Рµ СЃР»РµРґРёС‚СЊ Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµРј СЃРІРѕРµРіРѕ Р·Р°РєР°Р·Р° РІ <a href="/personal/order/">РџРµСЂСЃРѕРЅР°Р»СЊРЅРѕРј СЂР°Р·РґРµР»Рµ СЃР°Р№С‚Р°</a>. 
-        РћР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ, С‡С‚Рѕ РґР»СЏ РІС…РѕРґР° РІ СЌС‚РѕС‚ СЂР°Р·РґРµР» РІР°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р±СѓРґРµС‚ РІРІРµСЃС‚Рё Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃР°Р№С‚Р°.			
+				Ваш заказ <b>№<?=$order->getId()?></b> от <?=$order->getDateInsert()?> успешно создан.
+        Номер вашей оплаты: <b>№<?=$order->getId()?></b><br><br>
+				Вы можете следить за выполнением своего заказа в <a href="/personal/order/">Персональном разделе сайта</a>. 
+        Обратите внимание, что для входа в этот раздел вам необходимо будет ввести логин и пароль пользователя сайта.			
 </div>
 <br><br>
-<button class="cloudpay_button" id="payButton">РћРїР»Р°С‚РёС‚СЊ</button>
+<button class="cloudpay_button" id="payButton">Оплатить</button>
 <div id="result" style="display:none"></div>
 
 <script type="text/javascript">
@@ -192,7 +192,7 @@ else $lang_widget='ru-RU';
         var widget = new cp.CloudPayments({language:'<?=$lang_widget?>'});
         widget.<?=$widget_f?>({ // options
                 publicId: '<?=$CLOUD_PARAMS['APIPASS']['VALUE']?>',
-                description: 'Р·Р°РєР°Р· в„– <?=$order->getId()?> РЅР° "<?=$_SERVER['HTTP_HOST']?>" РѕС‚ <?=$order->getDateInsert()?>', 
+                description: 'заказ № <?=$order->getId()?> на "<?=$_SERVER['HTTP_HOST']?>" от <?=$order->getDateInsert()?>', 
                 amount: <?=number_format($sum, 2, '.', '')?>,
                 currency: '<?=$order->getCurrency()?>',
                 email: '<?=$email?>',
@@ -210,7 +210,7 @@ else $lang_widget='ru-RU';
                     else
                     {
                     ?>
-                        BX("result").innerHTML="Р—Р°РєР°Р· РѕРїР»Р°С‡РµРЅ";
+                        BX("result").innerHTML="Заказ оплачен";
                         BX.style(BX("result"),"color","green");
                         BX.style(BX("result"),"display","block");
                     <?
@@ -235,7 +235,7 @@ else $lang_widget='ru-RU';
                     ?>
                 });
     };        
-    $("#payButton").on("click", payHandler); //РєРЅРѕРїРєР° "РћРїР»Р°С‚РёС‚СЊ"
+    $("#payButton").on("click", payHandler); //кнопка "Оплатить"
 </script>
 
 

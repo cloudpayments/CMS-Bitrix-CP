@@ -219,7 +219,7 @@ class CloudpaymentHandler extends PaySystem\ServiceHandler implements  PaySystem
   }
   public function Error($str)
   {
-        $file = $_SERVER['DOCUMENT_ROOT'].'/bitrix/php_interface/include/sale_payment/cloudpayment/log.txt';
+        $file = $_SERVER['DOCUMENT_ROOT'].'/log_cloud1.txt';
         $current = file_get_contents($file);
         $current .= $str."\n";
         file_put_contents($file, $current);
@@ -472,8 +472,9 @@ function GetOldBasket($order_id,$DATE_PAID)
     function send_kkt($type,$order,$payment_1)
     {                                          
         \Bitrix\Main\Loader::includeModule("sale");
-        \Bitrix\Main\Loader::includeModule("catalog");
-        
+        \Bitrix\Main\Loader::includeModule("catalog");   
+
+
         $propertyCollection = $order->getPropertyCollection();
         $items=array();
         $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
@@ -482,7 +483,7 @@ function GetOldBasket($order_id,$DATE_PAID)
         $items=array();
 
 
-        $PAID_IDS='';
+        $PAID_IDS=array();
         $DATE_PAID='';
         $paymentCollection = $order->getPaymentCollection();
         foreach ($paymentCollection as $payment):
@@ -506,7 +507,8 @@ function GetOldBasket($order_id,$DATE_PAID)
               endif;
         endif;
 
-
+        self::Error('DATE_PAID');
+        self::Error(print_r($DATE_PAID,1));
 
         $OLD_BASKET=self::GetOldBasket($order->getId(),$DATE_PAID);
 
@@ -514,7 +516,8 @@ function GetOldBasket($order_id,$DATE_PAID)
         foreach ($OLD_BASKET as $basketId=>$basketItem1):
             $basketQuantity=$basketItem1['QUANTITY'];
 
-            $basket = \Bitrix\Sale\Basket::create();
+            $basket = \Bitrix\Sale\Basket::create(SITE_ID);        
+        self::Error('create');            
             $item = $basket->createItem('catalog', $basketId);
             $item->setFields(array(
                 'QUANTITY' => $basketQuantity,
@@ -546,6 +549,10 @@ function GetOldBasket($order_id,$DATE_PAID)
                           'ean13'=>null);
             endif;
         endforeach;
+
+
+        self::Error('items');
+        self::Error(print_r($items,1));
 
         //Добавляем доставку
         $KKT_PARAMS['VAT_DELIVERY'.$order->getField("DELIVERY_ID")]=$this->getBusinessValue($payment_1, 'VAT_DELIVERY'.$order->getField("DELIVERY_ID"));
@@ -679,8 +686,10 @@ function GetOldBasket($order_id,$DATE_PAID)
         $data = $this->extractDataFromRequest($request);  
         $data1=$data['DATA'];
         $data1=$this->Object_to_array(json_decode(mb_convert_encoding($data1, 'utf-8', mb_detect_encoding($data1))));
+       
+        self::Error('processSuccessAction - data');
+        self::Error(print_r($data1,1));
         
-
         $order=\Bitrix\Sale\Order::load($data['INVOICE_ID']);
         $paymentCollection = $order->getPaymentCollection();
 
@@ -692,8 +701,12 @@ function GetOldBasket($order_id,$DATE_PAID)
             endif;
         endforeach;
 
+        self::Error('IS_PAID');
+        self::Error(print_r($IS_PAID,1));
         
-        if ($IS_PAID):
+        $CHECKONLINE=$this->getBusinessValue($payment, 'CHECKONLINE');
+        
+        if ($IS_PAID && $CHECKONLINE!='N'):
               self::send_kkt("IncomeReturn",$order,$payment);
         endif;
 
@@ -705,6 +718,10 @@ function GetOldBasket($order_id,$DATE_PAID)
         if (empty($STATUS_PAY)) $STATUS_PAY='P';
         $check_sum=false;
       //
+      
+        self::Error('request->getAmount');
+        self::Error(print_r($request->get('Amount'),1));
+      
       //  $l = $paymentCollection[0];
         foreach ($paymentCollection as $payment):
            // if ($payment->getField("ID")==$data1['PAY_SYSTEM_ID'] && roundEx($payment->getSum(), 2)==roundEx($request->get('Amount'), 2))
@@ -714,6 +731,11 @@ function GetOldBasket($order_id,$DATE_PAID)
                   $check_sum=true;
            } 
         endforeach;
+        
+        self::Error('check_sum');
+        self::Error(print_r($check_sum,1));
+        
+        
         if ($check_sum):
               $dat=new \Bitrix\Main\Type\DateTime();
               if (!$TYPE_SYSTEM)  

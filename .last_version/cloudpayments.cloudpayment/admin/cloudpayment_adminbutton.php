@@ -34,28 +34,21 @@ if ($_GET['type'] && $ps->getField("ACTION_FILE")=='cloudpayment')
                     
                     $hash=md5($_SERVER["HTTP_HOST"].$_GET['ORDER_ID'].$order->getPrice().$email);
                     
-                    if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' or $_SERVER['HTTPS'] == 'On') ) {
-                        $protocol = 'https://';
-                    } else {
-                        $protocol = 'http://';
-                    }
-
-
+                    
+                    
                     if ($order->getPrice()>0 and $email)
                     {
                           $arEventFields=array(
                               "EMAIL_TO"=>$email,
-                              "SITE_NAME"=>$protocol.$_SERVER['HTTP_HOST'],
+                              "SITE_NAME"=>'http://'.$_SERVER['HTTP_HOST'],
                               "ORDER_ID"=>$_GET['ORDER_ID'],
                               "BASKET_LIST"=>$orderBasket_list,
                               "ORDER_SUMM"=>CurrencyFormat($order->getPrice(), 'RUB'),
-                              "ORDER_LINK"=>$protocol.$_SERVER["HTTP_HOST"].'/cloudPayments/pay.php?ORDER_ID='.$_GET['ORDER_ID'].'&hash='.$hash
+                              "ORDER_LINK"=>'http://'.$_SERVER["HTTP_HOST"].'/cloudPayments/pay.php?ORDER_ID='.$_GET['ORDER_ID'].'&hash='.$hash
                           );
                         // echo 'http://'.$_SERVER["HTTP_HOST"].'/cloudPayments/pay.php?ORDER_ID='.$_GET['ORDER_ID'].'&hash='.$hash;
                          CEvent::SendImmediate("SEND_BILL", $_GET['LID'], $arEventFields);
-                        echo $protocol.$_SERVER["HTTP_HOST"].'/cloudPayments/pay.php?ORDER_ID='.$_GET['ORDER_ID'].'&hash='.$hash.'<br><br><br>';
-                        if ($order->getSumPaid()) echo str_replace("#PRICE#",CurrencyFormat($order->getPrice()-$order->getSumPaid(), 'RUB'),GetMessage("SCHET_TEXT1"));
-                        else echo str_replace("#PRICE#",CurrencyFormat($order->getPrice(), 'RUB'),GetMessage("SCHET_TEXT1"));
+                        echo str_replace("#PRICE#",CurrencyFormat($order->getPrice(), 'RUB'),GetMessage("SCHET_TEXT1"));
                     }
              
              break;

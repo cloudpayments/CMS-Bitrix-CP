@@ -32,15 +32,16 @@ if ($params['BX_PAYSYSTEM_CODE'])
 }
 
 $order=\Bitrix\Sale\Order::load($params['PAYMENT_ID']);
-$PAID_IDS='';
+$PAID_IDS=array();
 $DATE_PAID='';
+$i=0;
 $paymentCollection = $order->getPaymentCollection();
 foreach ($paymentCollection as $payment):
     if ($payment->isPaid()):
-        $PAID_IDS[]=$payment->getField("ID");
+        $PAID_IDS[$i]=$payment->getField("ID");
+        $i++;
     endif;
 endforeach;
-
 
 
 if ($PAID_IDS[0]):
@@ -116,7 +117,7 @@ if($params['CHECKONLINE']!='N')
               );
           }
 
-          //Р”РѕР±Р°РІР»СЏРµРј РґРѕСЃС‚Р°РІРєСѓ
+          //Добавляем доставку
           if ($order->getDeliveryPrice() > 0 && $order->getField("DELIVERY_ID")) 
           {
               if ($params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")]) $Delivery_vat=$params['VAT_DELIVERY'.$order->getField("DELIVERY_ID")];
@@ -151,7 +152,7 @@ if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAM
 {
     if ($params['WIDGET_LANG']) $lang_widget=$params['WIDGET_LANG'];
     else $lang_widget='ru-RU';
-    
+
     ?>
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
     <button class="cloudpay_button" id="payButton"><?=Loc::getMessage('SALE_HANDLERS_PAY_SYSTEM_CLOUDPAYMENTS_BUTTON_PAID')?></button>
@@ -207,7 +208,7 @@ if ($status_id!=$CLOUD_PARAMS['STATUS_AU']['VALUE'] and $status_id!=$CLOUD_PARAM
                     ?>
                 });
         };
-        $("#payButton").on("click", payHandler); //РєРЅРѕРїРєР° "РћРїР»Р°С‚РёС‚СЊ"
+        $("#payButton").on("click", payHandler); //кнопка "Оплатить"
     </script>
 <?
 }
