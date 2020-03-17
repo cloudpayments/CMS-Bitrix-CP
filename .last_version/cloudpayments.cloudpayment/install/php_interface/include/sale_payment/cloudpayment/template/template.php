@@ -31,7 +31,8 @@ if ($params['BX_PAYSYSTEM_CODE'])
                   }
 }
 
-$order=\Bitrix\Sale\Order::load($params['PAYMENT_ID']);
+$payment = \Bitrix\Sale\Internals\PaymentTable::getById($params['PAYMENT_ID'])->fetch();
+$order=\Bitrix\Sale\Order::load($payment['ORDER_ID']);
 $PAID_IDS=array();
 $DATE_PAID='';
 $i=0;
