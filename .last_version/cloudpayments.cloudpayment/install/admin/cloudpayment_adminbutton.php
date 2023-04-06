@@ -1,1 +1,0 @@
-<?require ($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/cloudpayments.cloudpayment/admin/cloudpayment_adminbutton.php");?>
