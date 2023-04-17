@@ -93,7 +93,7 @@
       return $data;
     }
 
-    public function OnCloudpaymentOrderDelete($ID) {
+    public static function OnCloudpaymentOrderDelete($ID) {
       CModule::IncludeModule("sale");
       if(empty($ID))
         return false;
@@ -105,7 +105,7 @@
         $propertyCollection = $order->getPropertyCollection();
         $paymentCollection = $order->getPaymentCollection();
         foreach($paymentCollection as $payment) {
-          $psName = $payment->getPaymentSystemName(); // название платежной системы
+          $psName = $payment->getPaymentSystemName(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
           $psId = $payment->getPaymentSystemId();
         }
 
@@ -281,7 +281,7 @@
       return $out;
     }
 
-    function OnCloudpaymentOnSaleBeforeCancelOrder($ORDER_ID, $STATUS_ID) {
+    public static function OnCloudpaymentOnSaleBeforeCancelOrder($ORDER_ID, $STATUS_ID) {
       if(!empty($ORDER_ID)) {
         CModule::IncludeModule("sale");
         $order = \Bitrix\Sale\Order::load($ORDER_ID);

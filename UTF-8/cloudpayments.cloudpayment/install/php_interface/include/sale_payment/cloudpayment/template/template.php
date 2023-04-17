@@ -37,19 +37,17 @@
       $widget_f = 'auth';
     }
   }
-  $NO_ORDER = false;
-  $results_sql = $DB->Query("SELECT `ID` FROM `b_sale_order` where `ID`= " . $params['PAYMENT_ID']);
-  if(!$row_sql = $results_sql->Fetch()):
-    $results_sql = $DB->Query("SELECT `ORDER_ID` FROM `b_sale_order_payment` where `ID`= " . $params['PAYMENT_ID']);
-    if(!$row_sql = $results_sql->Fetch()){
-      echo GetMessage("NO_ORDER_ID");
-      $NO_ORDER = true;
-    }
-  endif;
 
-  if(!$NO_ORDER) {
-    $order = \Bitrix\Sale\Order::load($params['PAYMENT_ID']);
-    if(empty($order)) $order = \Bitrix\Sale\Order::load($row_sql['ORDER_ID']);
+    $results_sql = \Bitrix\Sale\Order::getList(['filter' => ['ID' => $params["PAYMENT_ID"]]]);
+    if ($row_sql = $results_sql->Fetch()) $order = \Bitrix\Sale\Order::load($params["PAYMENT_ID"]);
+    else {
+      $results_sql = \Bitrix\Sale\Payment::getList(['filter' => ['ID' => $params["PAYMENT_ID"]]]);
+      if ($row_sql = $results_sql->Fetch()) $order = \Bitrix\Sale\Order::load($row_sql['ORDER_ID']);
+      else echo GetMessage("NO_ORDER_ID");
+    }
+
+  if(!empty($order)) {
+    $params["ORDER_ID"] = $order->getId();
     $PAID_IDS = array();
     $DATE_PAID = '';
     $paymentCollection = $order->getPaymentCollection();
@@ -202,7 +200,7 @@
                        amount: <?=number_format($sum, 2, '.', '')?>,
                        currency: '<?=$params['PAYMENT_CURRENCY']?>',
                        email: '<?=$params['PAYMENT_BUYER_EMAIL']?>',
-                       invoiceId: '<?=htmlspecialcharsbx($params["PAYMENT_ID"]);?>',
+                       invoiceId: '<?=htmlspecialcharsbx($params["ORDER_ID"]);?>',
                        accountId: '<?=htmlspecialcharsbx($params["PAYMENT_BUYER_ID"]);?>',
                        skin: '<?=$skin?>',
                    <?if($params['CHECKONLINE'] != 'N'){?>
@@ -214,7 +212,7 @@
                      <?if ($params['SUCCESS_URL'])
                      {
                      ?>
-                       window.location.href = "<?=$params['SUCCESS_URL']?>?InvId=<?=htmlspecialcharsbx($params["PAYMENT_ID"]);?>";
+                       window.location.href = "<?=$params['SUCCESS_URL']?>?InvId=<?=htmlspecialcharsbx($params["ORDER_ID"]);?>";
                      <?
                      }
                      else
@@ -231,7 +229,7 @@
                      <?if ($params['FAIL_URL'])
                      {
                      ?>
-                       window.location.href = "<?=$params['FAIL_URL']?>?InvId=<?=htmlspecialcharsbx($params["PAYMENT_ID"]);?>";
+                       window.location.href = "<?=$params['FAIL_URL']?>?InvId=<?=htmlspecialcharsbx($params["ORDER_ID"]);?>";
                      <?
                      }
                      else

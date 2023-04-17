@@ -93,7 +93,7 @@
       return $data;
     }
 
-    public function OnCloudpaymentOrderDelete($ID) {
+    public static function OnCloudpaymentOrderDelete($ID) {
       CModule::IncludeModule("sale");
       if(empty($ID))
         return false;
@@ -281,7 +281,7 @@
       return $out;
     }
 
-    function OnCloudpaymentOnSaleBeforeCancelOrder($ORDER_ID, $STATUS_ID) {
+    public static function OnCloudpaymentOnSaleBeforeCancelOrder($ORDER_ID, $STATUS_ID) {
       if(!empty($ORDER_ID)) {
         CModule::IncludeModule("sale");
         $order = \Bitrix\Sale\Order::load($ORDER_ID);
