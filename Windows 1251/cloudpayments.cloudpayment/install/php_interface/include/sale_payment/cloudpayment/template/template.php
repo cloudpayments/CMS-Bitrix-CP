@@ -175,7 +175,7 @@
         $data['cloudPayments']['customerReceipt']['amounts']["provision"] = 0;
 
         if(!empty($params['SPIC']) && !empty($params['PACKAGE_CODE'])) {
-          $data['cloudPayments']['customerReceipt']['AdditionalReceiptInfos'] = ["?? ????? ??????????? ????? ?? 1% cashback"]; // ??? ????????? ????????;
+          $data['cloudPayments']['customerReceipt']['AdditionalReceiptInfos'] = ["Вы стали обладателем права на 1% cashback"]; // Это статичное значение
         }
       }
     }

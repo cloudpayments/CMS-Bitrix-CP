@@ -105,7 +105,7 @@
         $propertyCollection = $order->getPropertyCollection();
         $paymentCollection = $order->getPaymentCollection();
         foreach($paymentCollection as $payment) {
-          $psName = $payment->getPaymentSystemName(); // ???????? ????????? ???????
+          $psName = $payment->getPaymentSystemName();
           $psId = $payment->getPaymentSystemId();
         }
 
