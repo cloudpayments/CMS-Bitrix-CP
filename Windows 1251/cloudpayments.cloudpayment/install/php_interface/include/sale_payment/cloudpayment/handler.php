@@ -170,7 +170,7 @@
       return $result;
     }
 
-    function Object_to_array($data)
+    static function Object_to_array($data)
     {
       if (is_array($data) || is_object($data)) {
         $result = array();
@@ -407,7 +407,7 @@
       file_put_contents($file, $current);
     }
 
-    function cur_json_encode($a = false)      /////OK
+    static function cur_json_encode($a = false)      /////OK
     {
       if (is_null($a) || is_resource($a)) {
         return 'null';
@@ -464,7 +464,7 @@
       }
     }
 
-    function GetOldBasket($order_id, $DATE_PAID)
+    static function GetOldBasket($order_id, $DATE_PAID)
     {
       if ($order_id && $DATE_PAID):
         global $DB;

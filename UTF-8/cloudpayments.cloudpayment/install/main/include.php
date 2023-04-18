@@ -82,7 +82,7 @@
       }
     }
 
-    function Object_to_array($data) {
+    static function Object_to_array($data) {
       if(is_array($data) || is_object($data)) {
         $result = array();
         foreach($data as $key => $value) {
@@ -167,7 +167,7 @@
       return $CLOUD_PARAMS;
     }
 
-    function void($payment, $refundableSum, $CLOUD_PARAMS) {
+    static function void($payment, $refundableSum, $CLOUD_PARAMS) {
       $result = new PaySystem\ServiceResult();
       $error = '';
       $request = array(
@@ -254,7 +254,7 @@
       }
     }
 
-    function get_transaction($tr_id, $CLOUD_PARAMS) {
+    static function get_transaction($tr_id, $CLOUD_PARAMS) {
       $url = 'https://api.cloudpayments.ru/payments/get';
       if($CLOUD_PARAMS['APIPASS']['VALUE'])
         $accesskey = $CLOUD_PARAMS['APIPASS']['VALUE'];
@@ -761,7 +761,7 @@
       }
     }
 
-    function cur_json_encode($a = false)      /////OK
+    static function cur_json_encode($a = false)      /////OK
     {
       if(is_null($a) || is_resource($a)) {
         return 'null';
@@ -818,14 +818,14 @@
       }
     }
 
-    public function Error7($str) {
+    public static function Error7($str) {
       $file = $_SERVER['DOCUMENT_ROOT'] . '/log_cloudpayments2020.txt';
       $current = file_get_contents($file);
       $current .= print_r($str, 1) . "\n";
       file_put_contents($file, $current);
     }
 
-    function GetOldBasket($order_id, $DATE_PAID) {
+    static function GetOldBasket($order_id, $DATE_PAID) {
       if($order_id && $DATE_PAID):
         global $DB;
 
