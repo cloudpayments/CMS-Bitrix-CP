@@ -543,7 +543,7 @@
       }
     }
 
-    function send_kkt0($type, $order, $CLOUD_PARAMS) {
+    static function send_kkt0($type, $order, $CLOUD_PARAMS) {
       \Bitrix\Main\Loader::includeModule("sale");
       \Bitrix\Main\Loader::includeModule("catalog");
       $send_Check = false;
@@ -756,7 +756,7 @@
         $curlError = curl_error($ch);
         curl_close($ch);
 
-        $out1 = $this->Object_to_array(json_decode($content));
+        $out1 = self::Object_to_array(json_decode($content));
       }
     }
 
