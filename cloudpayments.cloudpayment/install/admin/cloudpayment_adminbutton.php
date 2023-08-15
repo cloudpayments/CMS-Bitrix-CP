@@ -2,6 +2,7 @@
   require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_before.php');
 
   use Bitrix\Main\Localization\Loc;
+	use Bitrix\Main\Web\HttpClient;
 
   Loc::loadMessages(__FILE__);
 
@@ -193,16 +194,9 @@
 
 
           if (empty($ERROR)) {
-            $ch = curl_init('https://api.cloudpayments.ru/orders/create');
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_USERPWD, trim($APIPASS) . ":" . trim($APIKEY));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            //  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "X-Request-ID:" . $reque));
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $order_bill);
-            $content = curl_exec($ch);
-
-
+						$httpClient = new HttpClient();
+						$httpClient->setAuthorization(trim($APIPASS), trim($APIKEY));
+						$content = $httpClient->post('https://api.cloudpayments.ru/orders/create', $order_bill);
 
             $html = json_decode($content);
             if ($html->Success) {
@@ -210,7 +204,6 @@
             } else {
               echo $html->Message;
             }
-            curl_close($ch);
           } else {
             echo $ERROR;
           }
